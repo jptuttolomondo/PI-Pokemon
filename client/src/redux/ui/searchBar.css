@@ -1,0 +1,17 @@
+.barra{   display: flex;
+    list-style-type: none;
+    text-align: center;
+ }
+ .enfila{display: inline;
+ 
+    text-align: center;
+    margin: 0 10px 0 0;
+    padding: 2px 7px 2px 7;
+font-size: 15px;
+    color: rgb(20, 106, 219);
+    text-emphasis-style:initial;
+    background-color: #fbff00;
+    border: 3px solid rgb(50, 32, 102);
+    border-radius: 5px;
+    text-decoration: none;
+ }

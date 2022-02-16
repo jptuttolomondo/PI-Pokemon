@@ -1,0 +1,28 @@
+body{
+    background-image: url("../../utils/pokemon\ landpage.jpg");
+      background-size: 100%; 
+  
+      font-family: cursive;
+  }
+  
+  
+  .land {
+      
+       font-size:10rem;
+      color: rgb(3, 3, 3);
+     
+    }
+    
+  .Head{
+  text-align: center;
+  font-size: 1cm;
+  
+  }
+  
+  .pie{
+    font-size: 5rem;
+    text-align:right;
+  
+  }
+  
+   

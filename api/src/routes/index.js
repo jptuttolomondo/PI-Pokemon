@@ -1,12 +1,10 @@
 const express=require('express')
-const routerTipo = express.Router();  
-//const { Router, response } = require('express');
-//const router=Router()
+const router = express.Router();  
 
 const pokemonRoutes=require('./pokemonRoutes')
 const typeRoutes=require('./typeRoutes') 
 
-routerTipo.use('/',pokemonRoutes)//pokemonRoutes
-routerTipo.use('/',typeRoutes)//ok
+router.use('/',pokemonRoutes)
+router.use('/',typeRoutes)
  
-module.exports = routerTipo
+module.exports = router

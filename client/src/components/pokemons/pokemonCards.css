@@ -1,0 +1,53 @@
+.paiscards {
+    background-color: rgb(161, 238, 166);
+    margin: 20px;
+    
+    width: 15rem;
+    text-align: center;
+  }
+  .containerCard{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .cards {
+    flex-wrap: wrap;
+    background-attachment: fixed;
+
+    align-items:flex-end;
+   
+    text-align: center;
+  
+  }
+
+
+  .card-title {
+    text-align:center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    
+  color: rgba(28, 24, 32, 0.945);
+    font-size: 6ch;
+    margin-bottom: 20px;
+    margin-top: 0pt;
+  }
+  
+  #closeIcon {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 8px;
+    margin-top: 8px;
+  }
+  
+  .card-body {
+    
+    margin-top: 20px !important;
+    padding-top: 20px !important;
+  }
+  .title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  .row {
+    flex-wrap: wrap;
+    background-attachment:fixed;
+    display:flex;
+    justify-content: center;
+  }
