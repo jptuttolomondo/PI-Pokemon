@@ -7,13 +7,13 @@ module.exports = (sequelize) => {
     id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4,  primaryKey: true,  },
     //idPoke: { type: DataTypes.INTEGER, autoIncrement: true,  },
     name: { type: DataTypes.STRING,allowNull: false, },
-    life: { type: DataTypes.INTEGER,allowNull: false, },
-    strenght: { type: DataTypes.INTEGER,allowNull: false, },
-    fender: { type: DataTypes.INTEGER,allowNull: false, },
-    speed:{ type: DataTypes.INTEGER,allowNull: false, },
-    height: { type: DataTypes.DECIMAL,allowNull: false, },
-    wheight: { type: DataTypes.DECIMAL,allowNull: false, },
-    sprites: {type:DataTypes.STRING,allowNull:false} ,
+    life: { type: DataTypes.INTEGER,allowNull: true, },
+    strenght: { type: DataTypes.INTEGER,allowNull: true, },
+    fender: { type: DataTypes.INTEGER,allowNull: true, },
+    speed:{ type: DataTypes.INTEGER,allowNull: true, },
+    height: { type: DataTypes.DECIMAL,allowNull: true, },
+    wheight: { type: DataTypes.DECIMAL,allowNull: true, },
+    sprites: {type:DataTypes.STRING,allowNull:true} ,
     
   }, {timeStamps:false},);
 };
