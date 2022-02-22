@@ -39,7 +39,7 @@ async function getApiInfo() {
                         defense:el.data.stats[2].base_stat,
                         life:el.data.stats[0].base_stat,
                         speed:el.data.stats[5].base_stat,
-                        sprites: el.data.sprites.front_default,
+                        sprites: el.data.sprites.other.dream_world.front_default,
                        height:el.data.height,
                          weight:el.data.weight,
                      tipos: el.data.types.map((e)=>e.type.name)

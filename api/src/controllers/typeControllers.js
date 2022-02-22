@@ -25,3 +25,4 @@ const getAllTypesPokemons=routesTipo.get('/type',async (req,res,next)=>{
 
 module.exports={getAllTypesPokemons}
 
+ 

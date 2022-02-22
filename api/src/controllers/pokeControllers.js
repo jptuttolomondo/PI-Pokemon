@@ -62,7 +62,7 @@ const getPokemonsById=routesPoke.get( `/pokemons/:id`,async (req,res)=>{
       if (findPokeDB) {
         return res.status(200).send(findPokeDB)
       }
-      res.status(404).send("El pokemon no existe")
+      res.status(404).send("El pokemon no existe!!")
     }
   
     let idApi = id.split("_")[0]
@@ -74,6 +74,8 @@ const getPokemonsById=routesPoke.get( `/pokemons/:id`,async (req,res)=>{
      console.log('idApi :',idApi)
       const pokeDetailsAPI = {
         id:pokeAPI.data.id,
+        name:pokeAPI.data.name,
+        sprites: pokeAPI.data.sprites.other.dream_world.front_default,
         hp: pokeAPI.data.stats[0].base_stat,
         attack: pokeAPI.data.stats[1].base_stat,
         defense: pokeAPI.data.stats[2].base_stat,
