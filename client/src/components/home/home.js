@@ -1,37 +1,43 @@
-import React from 'react'
- //import { useDispatch} from 'react-redux'
-//import { CargarPaises} from '../../actions/actions'
+ import React from 'react'
+ import { useDispatch,useSelector} from 'react-redux'
 import { NavBar } from '../../redux/ui/navBar'
-//import {PaisCards}from '../countries/PaisCards'
+import {PokeCards} from '../pokemons/pokeCards'
 import SearchBar from '../../redux/ui/searchBar'
 import "./home.css"
+import { BuscarPokemones } from '../pokemons/BuscarPokemones'
+import { OrdenarPorLetraAsc } from '../../redux/actions/actions'
+import { OrdenarPorLetraDesc } from '../../redux/actions/actions'
 
 export const Home = () => {  
-
-   //const dispatch = useDispatch();
-
-    //   useEffect(() => {
-    //     dispatch(CargarPaises());
-    //   }, [dispatch]);
-
+    const resultadoBusqueda = useSelector((state) => state.pokemonBuscado);
+    const ordenarAsc = useSelector((state) => state.copiaDePokemones);
+    const ordenarDesc = useSelector((state) => state.copiaDePokemones);
+  
     return ( 
           <div >
                   <NavBar />
                   <SearchBar  />
+               
+           {!resultadoBusqueda.length&& !ordenarAsc&& !ordenarDesc?  <PokeCards />  
+                                                  : resultadoBusqueda? <BuscarPokemones/>
+               
+                                  :ordenarAsc?<OrdenarPorLetraAsc/>
+                                  :<OrdenarPorLetraDesc/>
+               }
+                 
           </div>
       
     )
 }
 
-/*   <PaisCards/>   entre los divs*/
-/*<div className='head' >   
-                  <div className='home'>
-                  
-                       
-                        <div > 
-   
-      
-                         </div>
-                  </div>
+/*  {/*!ordenarAsc.length? <PokeCards/>
+                :   <OrdenarPorLetraAsc/>
+               }
+             {/*!ordenarDesc.length? <PokeCards/>
+                :   <OrdenarPorLetraDesc/>
+               }
+               //*/
 
-               </div>*/
+               /*   {!resultadoBusqueda.length? 
+               <PokeCards />  
+               : <BuscarPokemones/>}*/

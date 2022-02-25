@@ -1,11 +1,13 @@
-import React from "react";
-//import { useState } from "react";
-//import { useDispatch} from 'react-redux';
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch} from 'react-redux';
 //import { useEffect } from "react";
 import "./searchBar.css"
 //import { OrderBy,orderBy } from "../Orden";
-// import {PaisesPorNombre,
-//   CargarPaises,
+import { PokemonesPorNombre,CargarPokemones,OrdenarPorLetraAsc,OrdenarPorLetraDesc} from "../actions/actions";
+
+//import {BuscarPokemones} from "../../components/pokemons/BuscarPokemones"
+//   CargarPais
 //   OrdenarPorLetraAsc,
 //   filtroPorContinente,
 //    OrdenarPorLetraDesc,
@@ -18,40 +20,43 @@ import "./searchBar.css"
 
 export default function SearchBar({onSearch}) {
 
-// const [country, setCountry] = useState(""); //
-// const [region, setRegion] = useState("");
+ const [pokemonName, setPokemonName] = useState(""); 
+ const [tipo, setTipo] = useState("");
 
 //filtros
 
-// const [orden, setOrden] = useState(""); 
+ const [orden, setOrden] = useState(""); 
 
-// const dispatch = useDispatch();
+ const dispatch = useDispatch();
 
 // const [currentPage,setCurrentPage]=useState(0)
 
  const OnclickOrdenar=(e)=>{
 
-//    setOrden(e);
+   setOrden(e);
 // console.log(e)
 
-//  if (e === "all") dispatch(CargarPaises());
-// if (e === "a-z") dispatch(OrdenarPorLetraAsc());
-// if (e=== "z-a") dispatch(OrdenarPorLetraDesc());
+ if (e === "all") dispatch(CargarPokemones());
+if (e === "a-z") dispatch(OrdenarPorLetraAsc());
+ if (e=== "z-a") dispatch(OrdenarPorLetraDesc());
 //  if (e === "Asc poblacion") dispatch(OrdenarPorPoblacionAsc());
 //  if (e === "Desc poblacion") dispatch(OrdenarPorPoblacionDesc());
  
   }
+// useEffect( ()=>
+//   dispatch(BuscarPokemones())
+//   ,[dispatch])
 
-
-  const OnclickContinent = (e) => {
+  const OnclickFiltrarPorTipo = (e) => {
 //    dispatch(filtroPorContinente(region))
    };
   
    function onClickHandler() {
-//     if(!country){
-//       return alert('Ingresar el nombre de un país')}
-//     dispatch(filtroPorContinente())
-//     dispatch(PaisesPorNombre(country));
+    if(!pokemonName){
+      return alert('Ingresar el nombre de un pokemon')}
+      //validar que sea exacto!!
+   dispatch(PokemonesPorNombre(pokemonName))
+     //BuscarPokemones(pokemonName);
    }
 
 
@@ -74,11 +79,12 @@ export default function SearchBar({onSearch}) {
                          <input
                           type="text"
                          placeholder="Nombre de Pokemon.."
-                         value=''//{country}
-                           // onChange={//e => setCountry(e.target.value)}
+                         value={pokemonName}
+                            onChange={e => setPokemonName(e.target.value)}
                            />
                           <input type="submit" value="Buscar! " 
                           onClick={()=>onClickHandler()}/>
+                          
                        </p>
                      
                      </form>
@@ -92,7 +98,7 @@ export default function SearchBar({onSearch}) {
                        }}>
 
                 <p> Filtrar Pokemones por tipo...
-                        <select name='continente' /*onChange={(e) => setRegion(e.target.value)}*/  >
+                        <select name='Tipo' onChange={(e) => setTipo(e.target.value)}  >
                         <option value="all">All</option>
                           <option value="America">America</option>
                           <option value="Africa">Africa</option>
@@ -102,8 +108,8 @@ export default function SearchBar({onSearch}) {
                                                   
                         </select>
                      
-                          <input type="submit" value="Buscar.." 
-                       onClick={()=>OnclickContinent()}/>
+                          <input type="submit" value="Filtrar.." 
+                       onClick={()=>OnclickFiltrarPorTipo()}/>
                   </p>
                 </form>
                 </div>
@@ -156,5 +162,4 @@ export default function SearchBar({onSearch}) {
 
   );
 }
-
 
