@@ -1,7 +1,9 @@
 .pokecards {
     background-color: rgb(161, 238, 166);
     margin: 20px;
-    
+    border-radius: 5%;
+border-style: solid;
+border-color: black;
     width: 15rem;
     text-align: center;
   }

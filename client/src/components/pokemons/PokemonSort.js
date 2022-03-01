@@ -1,23 +1,26 @@
-import React from "react";
-import { useState,useEffect } from "react";
-import {useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import React,{useEffect,useState,useParams} from "react";
+import { OrdenarPorLetraAsc } from "../../redux/actions/actions";
+import { useSelector,useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { CargarPokemones } from "../../redux/actions/actions";
-import "./pokeCards.css";
+import'./PokemonSort.css'
 
 
- export const PokeCards=({onClose})=>{
+
+
+ export default function PokemonSort(){
   
-    const pokemones= useSelector((state) => state. copiaDePokemonesInicial);
+    const pokemones= useSelector((state) => state.pokemonOrdenado);
   const [currentPage, setCurrentPage] = useState(0);
+  //console.log('ingresado a pokemonsort',pokemonOrdenado)
+  setCurrentPage(0)
 const actualState=pokemones.length?pokemones:pokemones
 
   
 const dispatch=useDispatch()
-useEffect(()=>{
-dispatch(CargarPokemones())},[dispatch],actualState
-)
+//verificar la eliminacion de useeffect()
+// useEffect(()=>{
+// dispatch(OrdenarPorNombre())},[dispatch],actualState
+// )
 
 
     let nextPage = () => {
@@ -42,7 +45,7 @@ dispatch(CargarPokemones())},[dispatch],actualState
       const lastPage = () => {
    
         setCurrentPage(actualState.length - 12);
-         //console.log(currentPage);
+         console.log(currentPage);
       };
    const paginado = actualState.slice(currentPage, currentPage +12)
              
@@ -75,4 +78,21 @@ dispatch(CargarPokemones())},[dispatch],actualState
     )
 }
 
+
+/*<form onSubmit={(e) => {
+                     e.preventDefault();
+                     }}>
+                       <p> Buscar Pokemones por nombre..
+                         <input
+                          type="text"
+                         placeholder="Nombre de Pokemon.."
+                         value={pokemonName}
+                            onChange={e => setPokemonName(e.target.value)}
+                           />
+                          <input type="submit" value="Buscar! " 
+                          onClick={()=>onClickHandler()}/>
+                          
+                       </p>
+                     
+                     </form>*/
 

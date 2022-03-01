@@ -5,7 +5,7 @@ import'./BuscarPokemones.css'
 
 export const BuscarPokemones=()=> {
    const actualState = useSelector((state) => state.pokemonBuscado);
-//   console.log(actualState)
+ // console.log(actualState)
   return(
 
         <div className="pokeDetail" > 

@@ -32,20 +32,25 @@ export const PokemonsDetail = () => {
           <h1 >Detalle  de Pokemon</h1>
 
           <img src ={infoPokeDetail.sprites} width="150" height="100" alt='imagen'/>
-          <h4>Nombre: {infoPokeDetail.name}</h4>
-        <h4>ID de Pokemon: {infoPokeDetail.id}</h4>
-        <h3>hp: {infoPokeDetail.hp}</h3> 
-        <h3>attack :{infoPokeDetail.attack}</h3>
-        <h3>defense: {infoPokeDetail.defense}</h3>
-        <h3>speed: {infoPokeDetail.speed}</h3>
-        <h3>height: {infoPokeDetail.height}</h3>
-        <h3>weight: {infoPokeDetail.weight}</h3>
+          <h3>Nombre: {infoPokeDetail.name}</h3>
+          <div className='detail'>
+      <h5>ID de Pokemon: {infoPokeDetail.id}</h5>
+        <h5>hp: {infoPokeDetail.hp}</h5> 
+        <h5>attack :{infoPokeDetail.attack}</h5>
+        <h5>defense: {infoPokeDetail.defense}</h5>
+        <h5>speed: {infoPokeDetail.speed}</h5>
+        <h5>height: {infoPokeDetail.height}</h5>
+        <h5>weight: {infoPokeDetail.weight}</h5>
+
+
+          </div>
+  
   
 
 
                      
-  <a href='/type'><button >Agregar tipos al pokemon {infoPoke.name}</button></a>
-           <a href='/home'><button >Volver a lista de Pokemones</button></a>
+  <a href='/type'><button >Agregar tipos al pokemon {infoPokeDetail.name}</button></a>
+           <a href="/home"><button >Volver a lista de Pokemones</button></a>
          </div>
           
      </div>

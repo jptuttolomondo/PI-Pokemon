@@ -14,7 +14,7 @@ export const NavBar = ({setCurrentPage}) => {
            
                 <li className='enlinea' ><NavLink to= {'/home'}>buscar pokemones</NavLink></li>
                 <li className='enlinea'><NavLink to= {'/tipos' }>Agregar tipos a pokemones</NavLink></li>
-                <li className='enlinea'><NavLink to= {'/:id'}>pokemones por id</NavLink></li>
+                <li className='enlinea'><NavLink to= {'/crear'}>Crear Pokemones</NavLink></li>
                 <li className='enlinea'><NavLink to= {'/'}>Volver a LandPage</NavLink></li>
 
             </ul>

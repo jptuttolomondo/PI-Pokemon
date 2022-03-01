@@ -74,5 +74,3 @@ dispatch(CargarPokemones())},[dispatch],actualState
 </div>
     )
 }
-
-

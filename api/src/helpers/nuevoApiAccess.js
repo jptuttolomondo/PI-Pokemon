@@ -2,7 +2,6 @@
 
 const  axios  = require("axios");
 const { error } = require("console");
-//const Pokemon = require("../models/Pokemon");
 const { Pokemon, Type } = require('../db');
 
 
@@ -34,20 +33,9 @@ async function getApiInfo() {
    const pokemones=dataApi.data.results.map(el=>{
         console.log(el.url)
            return axios.get(el.url)})
- //console.log(pokemones)
-            
-  // console.log(pokemonesRender)
-//    let arrayPokesResp=[]
-//    for (let i=0;i<dataApi.data.results.length;i++){
-//        const apiResUrl=axios.get(`${dataApi.data.results[i].url}`)
-       
-//        arrayPokesResp.push(apiResUrl)
-//    }
-  // console.log('console del for',arrayPokesResp)
+ 
         const pokemonesRender=await Promise.all(pokemones);
-//console.log(arrayPokesResp)
-          
-    //const pokemones = dataApi.data.results; //creando un array con los resultados de la api
+
    const pokemonesMapeoInfo=pokemonesRender.map(el=>{
 
                       return ( 

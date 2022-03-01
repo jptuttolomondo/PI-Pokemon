@@ -5,24 +5,30 @@ import {PokeCards} from '../pokemons/pokeCards'
 import SearchBar from '../../redux/ui/searchBar'
 import "./home.css"
 import { BuscarPokemones } from '../pokemons/BuscarPokemones'
-import { OrdenarPorLetraAsc } from '../../redux/actions/actions'
-import { OrdenarPorLetraDesc } from '../../redux/actions/actions'
+import { FiltrarPokemones } from '../pokemons/filtrarPokemones'
+import PokemonSort from '../pokemons/PokemonSort'
+
 
 export const Home = () => {  
     const resultadoBusqueda = useSelector((state) => state.pokemonBuscado);
-    const ordenarAsc = useSelector((state) => state.copiaDePokemones);
-    const ordenarDesc = useSelector((state) => state.copiaDePokemones);
-  
+    const ordenado = useSelector((state) => state.pokemonOrdenado);
+    //console.log('ordenado:',ordenado)
+
+    const filtrado=useSelector((state)=>state.pokemonFiltrado)
+ 
     return ( 
           <div >
                   <NavBar />
                   <SearchBar  />
                
-           {!resultadoBusqueda.length&& !ordenarAsc&& !ordenarDesc?  <PokeCards />  
-                                                  : resultadoBusqueda? <BuscarPokemones/>
-               
-                                  :ordenarAsc?<OrdenarPorLetraAsc/>
-                                  :<OrdenarPorLetraDesc/>
+           {(filtrado.length<=0 &&resultadoBusqueda.length<=0)?  <PokeCards /> 
+            :filtrado.length>0? <FiltrarPokemones /> 
+                                :resultadoBusqueda.length>0? <BuscarPokemones/>
+                                
+                                :ordenado?<PokemonSort/>
+                                                                  
+                                                                                :<PokeCards />   
+                                
                }
                  
           </div>
@@ -30,14 +36,3 @@ export const Home = () => {
     )
 }
 
-/*  {/*!ordenarAsc.length? <PokeCards/>
-                :   <OrdenarPorLetraAsc/>
-               }
-             {/*!ordenarDesc.length? <PokeCards/>
-                :   <OrdenarPorLetraDesc/>
-               }
-               //*/
-
-               /*   {!resultadoBusqueda.length? 
-               <PokeCards />  
-               : <BuscarPokemones/>}*/

@@ -1,20 +1,18 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 //import { useEffect } from "react";
 import "./searchBar.css"
 //import { OrderBy,orderBy } from "../Orden";
-import { PokemonesPorNombre,CargarPokemones,OrdenarPorLetraAsc,OrdenarPorLetraDesc} from "../actions/actions";
+import { OrdenarPorNombre } from "../actions/actions";
+import { PokemonesPorNombre,CargarPokemones,
 
-//import {BuscarPokemones} from "../../components/pokemons/BuscarPokemones"
-//   CargarPais
-//   OrdenarPorLetraAsc,
-//   filtroPorContinente,
-//    OrdenarPorLetraDesc,
-//   FiltrarPorActividad,
-//   OrdenarPorPoblacionAsc,
-//   OrdenarPorPoblacionDesc,
-// } from "../../actions/actions";
+
+  filtroPorTipo,
+  OrdenarPorFuerzaAsc,
+  OrdenarPorFuerzaDesc,
+  TodosTipos} from "../actions/actions";
+
 
 
 
@@ -22,33 +20,52 @@ export default function SearchBar({onSearch}) {
 
  const [pokemonName, setPokemonName] = useState(""); 
  const [tipo, setTipo] = useState("");
-
+ const allTypes= useSelector(state=>state.tiposDePokemones)
+ 
+ const pokeorden= useSelector(state=>state.pokemonOrdenado)
+console.log(allTypes)
 //filtros
+ const dispatch = useDispatch();
+useEffect(()=>{
+dispatch(TodosTipos())
+
+},[dispatch],allTypes)
 
  const [orden, setOrden] = useState(""); 
 
- const dispatch = useDispatch();
 
-// const [currentPage,setCurrentPage]=useState(0)
+ const listaDeTipos= dispatch(TodosTipos);
+
+ console.log(listaDeTipos)
+
+
 
  const OnclickOrdenar=(e)=>{
 
    setOrden(e);
-// console.log(e)
+console.log(orden)
 
- if (e === "all") dispatch(CargarPokemones());
-if (e === "a-z") dispatch(OrdenarPorLetraAsc());
- if (e=== "z-a") dispatch(OrdenarPorLetraDesc());
-//  if (e === "Asc poblacion") dispatch(OrdenarPorPoblacionAsc());
-//  if (e === "Desc poblacion") dispatch(OrdenarPorPoblacionDesc());
- 
-  }
-// useEffect( ()=>
-//   dispatch(BuscarPokemones())
-//   ,[dispatch])
+ if (orden === "all") dispatch(CargarPokemones());
+ else dispatch(OrdenarPorNombre(orden))
+
+// useEffect(()=>{
+
+//   dispatch(OrdenarPorNombre(orden))
+//   },[dispatch],pokeorden)
+  
+  
+ }
+
 
   const OnclickFiltrarPorTipo = (e) => {
-//    dispatch(filtroPorContinente(region))
+setTipo(e)
+//console.log(tipo)
+if (e === "all") dispatch(CargarPokemones());
+else { const listaDeTipos=TodosTipos()
+  //console.log(listaDeTipos)
+      dispatch(filtroPorTipo(tipo));}
+
+
    };
   
    function onClickHandler() {
@@ -56,16 +73,13 @@ if (e === "a-z") dispatch(OrdenarPorLetraAsc());
       return alert('Ingresar el nombre de un pokemon')}
       //validar que sea exacto!!
    dispatch(PokemonesPorNombre(pokemonName))
-     //BuscarPokemones(pokemonName);
+    
    }
 
 
 
 
 
- const OnclickFiltrarActividad=(e)=>{
-
- }
 
 
   
@@ -100,12 +114,15 @@ if (e === "a-z") dispatch(OrdenarPorLetraAsc());
                 <p> Filtrar Pokemones por tipo...
                         <select name='Tipo' onChange={(e) => setTipo(e.target.value)}  >
                         <option value="all">All</option>
-                          <option value="America">America</option>
-                          <option value="Africa">Africa</option>
-                          <option value="Europe">Europe</option>
-                          <option value="Asia">Asia</option>
-                          <option value="Oceania">Oceania</option>
-                                                  
+                        {
+                          allTypes.map(el=> {
+                                return(<option key={el.name} value={el.name} > {el.name}</option>)
+
+                          } )
+                        }
+                    
+                       
+
                         </select>
                      
                           <input type="submit" value="Filtrar.." 
@@ -113,7 +130,63 @@ if (e === "a-z") dispatch(OrdenarPorLetraAsc());
                   </p>
                 </form>
                 </div>
-            <div className="enfila" > 
+          
+
+              <div className="enfila"> 
+                <form onSubmit={(e) => {
+                     e.preventDefault();
+                    }}>
+                         <p>Ordenar Pokemones por..
+        <select name='orden'onChange={e => setOrden(e.target.value)}>
+           <option value="all">Sin Orden</option>
+          <option value="a-z">Alfabeticamente A-Z</option>
+          <option value="z-a">alfabeticamente Z-A</option>
+        
+          </select>
+          <input type="submit" value="Ordenar.." 
+                       onClick={()=>OnclickOrdenar()}/>
+          </p>
+        </form>
+
+
+
+
+
+        </div>
+
+<div className="enfila">
+
+<form onSubmit={(e) => {
+                     e.preventDefault();
+                    }}>
+                         <p>Ordenar Pokemones por..
+        <select name='orden'  >
+         
+          <option value="fuerzaAsc">Por Fuerza de menor a mayor</option>
+          <option value="fuerzaDesc">Por Fuerza de mayor amenor</option>
+      
+         
+  </select>
+ </p>
+      </form>
+
+</div>
+ 
+        </div>              
+
+
+      
+      
+       
+
+             
+
+
+
+  );
+}
+
+/*  <div className="enfila" > 
                 <form onSubmit={(e) => {
                      e.preventDefault();
                      }}>
@@ -122,14 +195,7 @@ if (e === "a-z") dispatch(OrdenarPorLetraAsc());
                       
                           <option>Trekking</option>
                           <option>Kite Surf</option>
-                          <option>Paseos en Barco</option>
-                          <option>Excursiones</option>
-                          <option>Excursiones de pesca</option>
-                          <option>SandBoard</option>
-                          <option>Esqui de nieve</option>
-                          <option>Esqui Acuatico</option>
-                          <option>Parapente</option>
-                          <option>Canopy</option>
+                    
                                                  
                         </select>
                          <input type="submit" value="filtrar Pokemones" 
@@ -139,27 +205,4 @@ if (e === "a-z") dispatch(OrdenarPorLetraAsc());
                    </form>
 
               </div>
-
-              <div className="enfila"> 
-                <form onSubmit={(e) => {
-                     e.preventDefault();
-                    }}>
-                         <p>Ordenar Pokemones por..
-        <select name='orden' onChange={(e) => { OnclickOrdenar(e.target.value)}} >
-          <option value="all">-</option>
-          <option value="a-z">Alfabeticamente A-Z</option>
-          <option value="z-a">alfabeticamente Z-A</option>
-          <option value="Asc poblacion">↑ tipo de menor a mayor</option>
-          <option value="Desc poblacion">↓ tipo de mayor a menor</option>
-        </select>
-      
-        </p>
-                   </form>
-
-              </div>
-
-      </div>
-
-  );
-}
-
+              */

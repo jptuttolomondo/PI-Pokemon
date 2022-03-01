@@ -72,25 +72,7 @@ arregloDetalle.push(detalle)
 
   console.log(arregloDetalle)
            
-      //const pokemones = dataApi.data.results; //creando un array con los resultados de la api
-    //  const infoAPI=pokemonesRender.map(el=>{
-  
-    //                     return ( 
-    //                   {id:el.data.id,
-    //                    name: el.data.name, 
-    //                      strength: el.data.stats[1].base_stat,
-    //                       defense:el.data.stats[2].base_stat,
-    //                       life:el.data.stats[0].base_stat,
-    //                       speed:el.data.stats[5].base_stat,
-    //                       sprites: el.data.sprites.front_default,
-    //                      height:el.data.height,
-    //                        weight:el.data.weight,
-    //                    tipos: el.data.types.map((e)=>e.type.name)
-    //                   })
-    //                 })
-              
-    
-    // console.log('infoapi :',infoAPI)
+   
      const allPokes = [...arregloDetalle,...detailsPokeDb]
   
     if (name) {
