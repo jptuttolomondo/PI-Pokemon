@@ -5,7 +5,7 @@ const {Pokemon} = require('../db.js')
 const ApiAccess= async()=>{
  try{
   const salida= await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=40&offset=0`)
-//console.log(salida)
+
   const pokemonesAPI= await salida.data.results.map(e=>{return axios.get(e.url) })
 
 const poke1= await Promise.all(pokemonesAPI)
